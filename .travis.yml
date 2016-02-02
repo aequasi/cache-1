@@ -2,19 +2,14 @@ language: php
 sudo: required
 dist: precise
 
-php:
-    - 5.5
-    - 5.6
-    - 7.0
-
 matrix:
     include:
-        - env: ADAPTER=src/Adapter/Apc
-
-addons:
-    apt:
-        packages:
-            - parallel
+        - php: 5.5
+          env: LIBRARY=Apc DIR=src/Adapter/
+        - php: 5.6
+          env: LIBRARY=Apc DIR=src/Adapter/
+        - php: 7.0
+          env: LIBRARY=Apc DIR=src/Adapter/
 
 services:
     - redis
@@ -33,20 +28,20 @@ cache:
 
 before_install:
     - mkdir -p ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d
-    - if [ -f build/php/$TRAVIS_PHP_VERSION.sh]; then ./build/php/$TRAVIS_PHP_VERSION.sh; fi
-    - if [[ $TRAVIS_PHP_VERSION = 5.* ]]; then ./build/php/5.x.sh; fi
-    - if [[ $TRAVIS_PHP_VERSION = 7.* ]]; then ./build/php/7.x.sh; fi
-    - ./build/php/all.sh
+    - if [ -f build/php/$TRAVIS_PHP_VERSION/$LIBRARY.sh]; then ./build/php/$TRAVIS_PHP_VERSION/$LIBRARY.sh; fi
+    #- if [[ $TRAVIS_PHP_VERSION = 5.* ]]; then ./build/php/5.x.sh; fi
+    #- if [[ $TRAVIS_PHP_VERSION = 7.* ]]; then ./build/php/7.x.sh; fi
+    #- ./build/php/all.sh
     - travis_retry composer self-update
 
 install:
-    - composer require --no-update mongodb/mongodb:^1.0
+    #- composer require --no-update mongodb/mongodb:^1.0
     - composer require --no-update cache/integration-tests:$INTEGRATION_TEST_VERSION
     - composer install --no-interaction --prefer-source
 
 
 script:
-    - ./build/runTest.sh $ADAPTER
+    - ./build/runTest.sh $DIR$LIBRARY
 
 after_success:
     - if [[ $TRAVIS_PHP_VERSION = 7.* ]]; then codecov ; fi
