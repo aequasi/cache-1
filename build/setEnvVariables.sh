@@ -12,6 +12,6 @@ then
     export MONGODB_COLLECTION="cache"
 fi
 
-printf "Adapter: $ADAPTER"
-printf "Library: $LIBRARY"
-printf "Directory: $DIR$PROJECT"
+printf "Adapter: $ADAPTER\n"
+printf "Library: $LIBRARY\n"
+printf "Directory: $DIR/$PROJECT\n"

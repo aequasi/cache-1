@@ -36,7 +36,7 @@ install:
     # - composer install --no-interaction --prefer-source
 
 script:
-    - ./build/runTest.sh "$DIR$PROJECT"
+    - ./build/runTest.sh "$DIR/$PROJECT"
     #- ./build/runTest.sh ./ --coverage-clover=coverage.xml
 
 after_success:
