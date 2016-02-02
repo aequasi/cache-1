@@ -37,6 +37,7 @@ install:
 
 script:
     - ./build/runTest.sh $DIR$PROJECT
+    - ./build/runTest.sh ./ --coverage-clover=coverage.xml
 
 after_success:
     - if [[ $TRAVIS_PHP_VERSION = 7.* ]]; then codecov ; fi

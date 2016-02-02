@@ -2,9 +2,8 @@
 
 INTEGRATION_TEST_VERSION="0.7.0"
 
-./build/setEnvVariables.sh
-if [ ! -z ${ADAPTER+x} ]; then DIR=src/Adapter; PROJECT=$ADAPTER; fi
-if [ ! -z ${LIBRARY+x} ]; then DIR=src;  PROJECT=$LIBRARY; fi
+if [ ! -z "$ADAPTER" ]; then PROJECT=$ADAPTER; DIR=src/Adapter;  fi
+if [ ! -z "$LIBRARY" ]; then PROJECT=$LIBRARY; DIR=src;  fi
 printf "\n****** Building project: $PROJECT ******\n"
 
 
