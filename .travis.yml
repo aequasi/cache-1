@@ -15,21 +15,12 @@ services:
     - redis
     - memcached
 
-env:
-  global:
-    - MONGODB_HOST="localhost:27017"
-    - MONGODB_DATABASE="test"
-    - MONGODB_COLLECTION="cache"
-    - INTEGRATION_TEST_VERSION="0.7.0"
-
 cache:
   directories:
     - "$HOME/.composer/cache"
 
 before_install:
-    - if [ ! -z ${ADAPTER+x} ]; then DIR=src/Adapter; fi
-    - if [ ! -z ${LIBRARY+x} ]; then DIR=src; fi
-    - PROJECT=$ADAPTER || $LIBRARY
+    - ./build/setEnvVariables.sh
     - printf "\n****** Building project: $PROJECT ******\n"
     - mkdir -p ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d
     - if [ -f build/php/$TRAVIS_PHP_VERSION/$PROJECT.sh]; then ./build/php/$TRAVIS_PHP_VERSION/$PROJECT.sh; fi
