@@ -4,8 +4,6 @@ INTEGRATION_TEST_VERSION="0.7.0"
 
 if [ ! -z "$ADAPTER" ]; then PROJECT=$ADAPTER; DIR=src/Adapter;  fi
 if [ ! -z "$LIBRARY" ]; then PROJECT=$LIBRARY; DIR=src;  fi
-printf "\n****** Building project: $PROJECT ******\n"
-
 
 if [ $ADAPTER == 'MongoDB' ]
 then

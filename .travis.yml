@@ -20,8 +20,7 @@ cache:
     - "$HOME/.composer/cache"
 
 before_install:
-    - ./build/setEnvVariables.sh
-    - printf "\n****** Building project: $PROJECT ******\n"
+    - ./build/setEnvVariables.sh && printf "\n****** Building project: $PROJECT ******\n"
     - mkdir -p ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d
     - if [ -f build/php/$TRAVIS_PHP_VERSION/$PROJECT.sh]; then ./build/php/$TRAVIS_PHP_VERSION/$PROJECT.sh; fi
     #- if [[ $TRAVIS_PHP_VERSION = 5.* ]]; then ./build/php/5.x.sh; fi
