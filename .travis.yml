@@ -30,7 +30,7 @@ before_install:
     - if [ ! -z ${ADAPTER+x} ]; then DIR=src/Adapter; fi
     - if [ ! -z ${LIBRARY+x} ]; then DIR=src; fi
     - PROJECT=$ADAPTER || $LIBRARY
-    - echo "Building project: $PROJECT"
+    - printf "\n****** Building project: $PROJECT ******\n"
     - mkdir -p ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d
     - if [ -f build/php/$TRAVIS_PHP_VERSION/$PROJECT.sh]; then ./build/php/$TRAVIS_PHP_VERSION/$PROJECT.sh; fi
     #- if [[ $TRAVIS_PHP_VERSION = 5.* ]]; then ./build/php/5.x.sh; fi
