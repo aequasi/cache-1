@@ -5,11 +5,11 @@ dist: precise
 matrix:
     include:
         - php: 5.5
-          env: LIBRARY=Apc DIR=src/Adapter/
+          env: ADAPTER=Apc
         - php: 5.6
-          env: LIBRARY=Apc DIR=src/Adapter/
+          env: ADAPTER=Apc
         - php: 7.0
-          env: LIBRARY=Apc DIR=src/Adapter/
+          env: ADAPTER=Apc
 
 services:
     - redis
@@ -27,8 +27,12 @@ cache:
     - "$HOME/.composer/cache"
 
 before_install:
+    - if [ ! -z ${ADAPTER+x} ]; then DIR=src/Adapter; fi
+    - if [ ! -z ${LIBRARY+x} ]; then DIR=src; fi
+    - PROJECT=$ADAPTER || $LIBRARY
+    - echo "Building project: $PROJECT"
     - mkdir -p ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d
-    - if [ -f build/php/$TRAVIS_PHP_VERSION/$LIBRARY.sh]; then ./build/php/$TRAVIS_PHP_VERSION/$LIBRARY.sh; fi
+    - if [ -f build/php/$TRAVIS_PHP_VERSION/$PROJECT.sh]; then ./build/php/$TRAVIS_PHP_VERSION/$PROJECT.sh; fi
     #- if [[ $TRAVIS_PHP_VERSION = 5.* ]]; then ./build/php/5.x.sh; fi
     #- if [[ $TRAVIS_PHP_VERSION = 7.* ]]; then ./build/php/7.x.sh; fi
     #- ./build/php/all.sh
@@ -41,7 +45,7 @@ install:
 
 
 script:
-    - ./build/runTest.sh $DIR$LIBRARY
+    - ./build/runTest.sh $DIR$PROJECT
 
 after_success:
     - if [[ $TRAVIS_PHP_VERSION = 7.* ]]; then codecov ; fi
