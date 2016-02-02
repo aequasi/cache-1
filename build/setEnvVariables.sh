@@ -2,8 +2,8 @@
 
 export INTEGRATION_TEST_VERSION="0.7.0"
 
-if [ ! -z "$ADAPTER" ]; then PROJECT=$ADAPTER; DIR=src/Adapter;  fi
-if [ ! -z "$LIBRARY" ]; then PROJECT=$LIBRARY; DIR=src;  fi
+if [ ! -z "$ADAPTER" ]; then export PROJECT=$ADAPTER; export DIR=src/Adapter;  fi
+if [ ! -z "$LIBRARY" ]; then export PROJECT=$LIBRARY; export DIR=src;  fi
 
 if [ $ADAPTER == 'MongoDB' ]
 then
