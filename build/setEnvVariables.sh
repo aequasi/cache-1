@@ -11,3 +11,7 @@ then
     export MONGODB_DATABASE="test"
     export MONGODB_COLLECTION="cache"
 fi
+
+printf "Adapter: $ADAPTER"
+printf "Library: $LIBRARY"
+printf "Directory: $DIR$PROJECT"
