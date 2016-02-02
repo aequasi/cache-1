@@ -7,6 +7,10 @@ php:
     - 5.6
     - 7.0
 
+matrix:
+    include:
+        - env: ADAPTER=src/Adapter/Apc
+
 addons:
     apt:
         packages:
@@ -42,7 +46,7 @@ install:
 
 
 script:
-    - ./build/runTests.sh
+    - ./build/runTest.sh $ADAPTER
 
 after_success:
     - if [[ $TRAVIS_PHP_VERSION = 7.* ]]; then codecov ; fi
