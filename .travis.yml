@@ -26,7 +26,7 @@ before_install:
     - echo "Disable xdebug" && phpenv config-rm xdebug.ini
     - . ./build/setEnvVariables.sh
     - mkdir -p ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d
-    - if [ -f build/php/$TRAVIS_PHP_VERSION/$PROJECT.sh]; then . ./build/php/$TRAVIS_PHP_VERSION/$PROJECT.sh; fi
+    - if [ -f "build/php/$TRAVIS_PHP_VERSION/$PROJECT.sh" ]; then . ./build/php/$TRAVIS_PHP_VERSION/$PROJECT.sh; fi
     #- if [[ $TRAVIS_PHP_VERSION = 5.* ]]; then ./build/php/5.x.sh; fi
     #- if [[ $TRAVIS_PHP_VERSION = 7.* ]]; then ./build/php/7.x.sh; fi
     #- ./build/php/all.sh
