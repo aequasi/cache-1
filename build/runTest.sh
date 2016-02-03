@@ -7,7 +7,7 @@ printf "\n\n************ Opening directory: $1 ************\n"
 printf     "************ Running tests for: $SLUG ************\n\n"
 
 if [ $TRAVIS_PHP_VERSION = 5.5 ]; then composer require --no-update phpunit/phpunit:~4.0; fi
-composer install --no-interaction --prefer-source --ignore-platform-reqs
+composer install --no-interaction --prefer-source
 
 TEST="./vendor/bin/phpunit $2"
 if [ "$TRAVIS_PHP_VERSION" == '7.0' ]
