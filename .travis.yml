@@ -8,11 +8,29 @@ php:
     - 7.0
 env:
     - ADAPTER=Apc
+    - ADAPTER=Apcu
+    - ADAPTER=Chain
+    - ADAPTER=Common
+    - ADAPTER=Doctrine
+    - ADAPTER=Filesystem
+    - ADAPTER=Memcache
+    - ADAPTER=Memcached
+    - ADAPTER=MongoDB
+    - ADAPTER=PHPArray
+    - ADAPTER=Predis
+    - ADAPTER=Redis
+    - ADAPTER=Void
+    - LIBRARY=BRIDGE
+    - LIBRARY=Hierarchy
+    - LIBRARY=SessionHandler
+    - LIBRARY=Taggable
 
 matrix:
     exclude:
         - php: 7.0
           env: ADAPTER=Apc
+        - php: 7.0
+          env: ADAPTER=Memcache
 
 services:
     - redis
